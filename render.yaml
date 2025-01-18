@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: pywebio-chat
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    regions:
+      - oregon
