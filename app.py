@@ -3,6 +3,12 @@ from pywebio import start_server
 from pywebio.input import * 
 from pywebio.output import * 
 from pywebio.session import defer_call, info as session_info, run_async, run_js, set_env 
+from pywebio.platform.flask import webio_view
+
+from flask import Flask
+
+app = Flask(__name__)
+app.secret_key = ';dkefjn;wergjosimglk/akjgkrjg/akgba/ekgjbekabf;.fjb/ugr/ku/bgb/'
 
 chat_msgs = [] 
 online_users = set() 
@@ -66,5 +72,8 @@ async def refresh_msg(nickname, msg_box):
 
         last_idx = len(chat_msgs) 
 
+app.add_url_rule('/', 'webio_view', webio_view(main),methods=['GET','POST'])
+
 if __name__ == "__main__": 
-    start_server(main, cdn=False)
+    #start_server(main, cdn=False)
+    app.run(debug=False)
